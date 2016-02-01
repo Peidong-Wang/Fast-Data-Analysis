@@ -6,10 +6,10 @@ from sklearn.preprocessing import LabelEncoder
 import random
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.ensemble import GradientBoostingClassifier
+from sklearn.metrics import roc_curve
 
-
-train = pd.read_csv("train.csv")
-test = pd.read_csv("test.csv")
+train = pd.read_csv("train_r.csv")
+test = pd.read_csv("test_r.csv")
 train["Type"] = "Train"
 test["Type"] = "Test"
 fullData = pd.concat([train, test], axis = 0)
@@ -59,21 +59,31 @@ Train, Validate = train[train["is_train"] == True], train[train["is_train"] == F
 #step 8, Pass the imputed and dummy (missing values flags) variables into the modelling process. I am using random forest to predict the class
 features = list(set(list(fullData.columns)) - set(ID_col) - set(target_col) - set(other_col))
 
+# x_train = Train[list(features)].values
+# y_train = Train["TotalPayBenefits"].values
+# x_validate = Validate[list(features)].values
+# y_validate = Validate["TotalPayBenefits"].values
+# x_test = test[list(features)].values
+
 x_train = Train[list(features)].values
-y_train = Train["TotalPayBenefits"].values
+y_train = np.asarray(Train["TotalPayBenefits"].values, dtype = "|S6")
 x_validate = Validate[list(features)].values
-y_validate = Validate["TotalPayBenefits"].values
+y_validate = np.asarray(Validate["TotalPayBenefits"].values, dtype = "|S6")
 x_test = test[list(features)].values
 
-random.seed(100)
-rf = RandomForestClassifier(n_estimators = 1000)
+# random.seed(10)
+rf = RandomForestClassifier(n_jobs = 3, n_estimators = 3)
 rf.fit(x_train,y_train)
 
 #step 9, Check performance and make predictions
-status = rf.predict_proba(x_validate)
-fpr, tpr, _ = roc_curve(y_validate, status[:, 1])
-roc_auc = auc(gpr, tpr)
-print roc_auc
+
+print "Accuracy is: "
+print rf.score(x_validate,y_validate)
+
+# status = rf.predict_proba(x_validate)
+# fpr, tpr, _ = roc_curve(y_validate, status[:, 1])
+# roc_auc = auc(gpr, tpr)
+# print roc_auc
 
 # final_status = rf.predict_proba(x_test)
 # test["Account.Status"]=final_status[:,1]
