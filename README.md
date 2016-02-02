@@ -10,6 +10,6 @@ The intended datasets used in paradigm 2 are train.csv and test.csv, both from t
 
 In the latest version of paradigm 2, the datasets are train_r.csv and test_r.csv. Both of these two datasets contains only 200 data samples. In another word, train_r.csv contains data sample from 1st to 199th, test_r.csv from 200th to 399th.
 
->The np.asarray() function in paradigm 2 is memory consuming, which is the main reason to use datasets train_r.csv and test_r.csv. 
+>The np.asarray( ) function in paradigm 2 is memory consuming, leading to the use of datasets train_r.csv and test_r.csv. 
 
-In conclusion, paradigm 1 and 2 are both runnable now, althoough paradigm 2 may be memory consuming while running. Further modification to paradigm 2, especially the np.asarray() part, will be done if time permits.
+In conclusion, paradigm 1 and 2 are both runnable now, althoough paradigm 2 may be memory consuming while running. Further modification to paradigm 2, especially the np.asarray( ) part, will be done if time permits.
