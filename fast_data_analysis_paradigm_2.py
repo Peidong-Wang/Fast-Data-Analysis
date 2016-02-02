@@ -71,8 +71,8 @@ x_validate = Validate[list(features)].values
 y_validate = np.asarray(Validate["TotalPayBenefits"].values, dtype = "|S6")
 x_test = test[list(features)].values
 
-# random.seed(10)
-rf = RandomForestClassifier(n_jobs = 3, n_estimators = 3)
+random.seed(100)
+rf = RandomForestClassifier(n_jobs = 3, n_estimators = 1000)
 rf.fit(x_train,y_train)
 
 #step 9, Check performance and make predictions
