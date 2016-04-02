@@ -1,6 +1,6 @@
 ## Fast-Data-Analysis
 
-This is a workspace for building fast data analysis toolkits.
+This is a workspace building fast data analysis toolkits.
 
 The first paradigm is a **RandomForestClassifier** for an artifical dataset quoted from Andrew Cross.[random-forests-in-python-with-scikit-learn](http://www.agcross.com/2015/02/random-forests-in-python-with-scikit-learn/)
 
